@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Web3Cart Logo](assets/logo.webp)
+![Web3Cart Logo](assets/logo.png)
 
 ### 🚀 **No KYC • No Banks • No Borders**
 
@@ -13,7 +13,7 @@
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.26-yellow.svg)](https://soliditylang.org)
 [![Blockchain](https://img.shields.io/badge/Blockchain-Multi--Chain-green.svg)](#supported-blockchains)
 
-[🌐 Live Demo](https://web3cart.store) | [📖 Documentation](https://web3cart.site) | [💬 Telegram](https://t.me/web3cart)
+[🌐 Live Demo](https://web3cart.store) | [📖 Documentation](https://web3cart.site) | [🗺️ Roadmap](https://web3cart.site/features-roadmap) | [📰 Updates](https://web3cart.site/updates/)
 
 </div>
 
@@ -211,9 +211,11 @@ Web3Cart is proprietary software. See [LICENSE](LICENSE) for details.
 
 - **Website:** https://web3cart.site
 - **Live Demo:** https://web3cart.store
+- **Roadmap:** https://web3cart.site/features-roadmap
+- **Updates:** https://web3cart.site/updates/
 - **Documentation:** https://docs.web3cart.site
 - **Twitter/X:** [@web3cart](https://twitter.com/web3cart)
-- **Telegram:** [t.me/web3cart](https://t.me/web3cart)
+- **GitHub:** [devburaq/Web3Cart-E-Commerce](https://github.com/devburaq/Web3Cart-E-Commerce)
 - **Email:** support@web3cart.site
 
 ---
