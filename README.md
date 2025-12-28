@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Web3Cart Logo](https://web3cart.site/assets/images/resources/xpayr-logo.webp)
+![Web3Cart Logo](assets/logo.webp)
 
 ### 🚀 **No KYC • No Banks • No Borders**
 
