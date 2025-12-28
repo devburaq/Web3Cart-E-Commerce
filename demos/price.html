@@ -1,0 +1,252 @@
+<section class="pricing-section">
+    <div class="pricing-container">
+        
+        <div class="pricing-header">
+            <span class="badge-sys">SYSTEM UPGRADE</span>
+            <h2>CHOOSE YOUR <span class="highlight-glitch">POWER LEVEL.</span></h2>
+            <p>Stop renting your business. Pay once, own forever. Select the protocol capacity that matches your ambition.</p>
+            
+            <div class="billing-toggle">
+                <span class="toggle-opt dimmed">MONTHLY RENT</span>
+                <div class="toggle-switch"></div>
+                <span class="toggle-opt active">LIFETIME OWNERSHIP</span>
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+
+            <div class="plan-card" onmouseover="focusCard(this)" onmouseout="resetCards()">
+                <div class="plan-header">
+                    <h3 class="plan-name">NODE_INITIATE</h3>
+                    <div class="price-box">
+                        <span class="old-price">$499</span>
+                        <span class="current-price">$299</span>
+                    </div>
+                </div>
+                
+                <div class="core-metric metric-red">
+                    <span class="metric-val">2.5%</span>
+                    <span class="metric-label">PROTOCOL FEE</span>
+                </div>
+
+                <div class="feature-list">
+                    <div class="f-item"><span>Limit:</span> <b>$500K / Year</b></div>
+                    <div class="f-item"><span>Contract:</span> Standard ERC-20</div>
+                    <div class="f-item"><span>Modules:</span> Core Essentials</div>
+                    <div class="f-item"><span>Support:</span> 6 Months (Email)</div>
+                </div>
+
+                <button class="plan-btn btn-outline">INITIALIZE</button>
+            </div>
+
+            <div class="plan-card popular" onmouseover="focusCard(this)" onmouseout="resetCards()">
+                <div class="pop-badge">RECOMMENDED</div>
+                <div class="plan-header">
+                    <h3 class="plan-name">NETWORK_GROWTH</h3>
+                    <div class="price-box">
+                        <span class="current-price">$999</span>
+                    </div>
+                </div>
+                
+                <div class="core-metric metric-orange">
+                    <span class="metric-val">1.5%</span>
+                    <span class="metric-label">PROTOCOL FEE</span>
+                </div>
+
+                <div class="feature-list">
+                    <div class="f-item highlight-item"><span>AI Power:</span> Content Generator</div>
+                    <div class="f-item"><span>Limit:</span> <b>$5M / Year</b></div>
+                    <div class="f-item"><span>Hosting:</span> 1 Year Free (200GB)</div>
+                    <div class="f-item"><span>Modules:</span> Gift & Deals</div>
+                    <div class="f-item"><span>Analytics:</span> Detailed Dashboard</div>
+                </div>
+
+                <button class="plan-btn btn-fill">ACCELERATE</button>
+            </div>
+
+            <div class="plan-card" onmouseover="focusCard(this)" onmouseout="resetCards()">
+                <div class="plan-header">
+                    <h3 class="plan-name">SYSTEM_SCALE</h3>
+                    <div class="price-box">
+                        <span class="current-price">$2,999</span>
+                    </div>
+                </div>
+                
+                <div class="core-metric metric-yellow">
+                    <span class="metric-val">0.5%</span>
+                    <span class="metric-label">PROTOCOL FEE</span>
+                </div>
+
+                <div class="feature-list">
+                    <div class="f-item highlight-item"><span>AI Power:</span> AI Assistant Integration</div>
+                    <div class="f-item"><span>Limit:</span> <b>UNLIMITED</b></div>
+                    <div class="f-item"><span>Contract:</span> Fully Customized</div>
+                    <div class="f-item"><span>Hosting:</span> 1 Year Free (Unlimited)</div>
+                    <div class="f-item"><span>Support:</span> Priority Queue</div>
+                </div>
+
+                <button class="plan-btn btn-outline">DOMINATE</button>
+            </div>
+
+            <div class="plan-card enterprise" onmouseover="focusCard(this)" onmouseout="resetCards()">
+                <div class="plan-header">
+                    <h3 class="plan-name">GOD_MODE</h3>
+                    <div class="price-box">
+                        <span class="current-price">$14,999</span>
+                    </div>
+                </div>
+                
+                <div class="core-metric metric-green">
+                    <span class="metric-val">0%</span>
+                    <span class="metric-label">ZERO FEES</span>
+                </div>
+
+                <div class="feature-list">
+                    <div class="f-item highlight-item"><span>Token:</span> <b>Own Token Support</b></div>
+                    <div class="f-item highlight-item"><span>Security:</span> Light Audit Included</div>
+                    <div class="f-item"><span>Limit:</span> Unlimited + Optimized</div>
+                    <div class="f-item"><span>Hosting:</span> 3 Years Included</div>
+                    <div class="f-item"><span>Support:</span> Dedicated Engineer</div>
+                </div>
+
+                <button class="plan-btn btn-glow">CONTACT BASE</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CSS FOR PRICING */
+    :root {
+        --bg-price: #050505;
+        --card-bg: #0f0f0f;
+        --border: #222;
+        --accent-blue: #00f3ff;
+        --accent-purple: #bd00ff;
+        --text-white: #fff;
+        --text-gray: #888;
+        
+        --metric-red: #ff3333;
+        --metric-orange: #ffbd2e;
+        --metric-yellow: #f3f315;
+        --metric-green: #00ff88;
+    }
+
+    .pricing-section {
+        background-color: var(--bg-price);
+        padding: 100px 20px;
+        font-family: 'Inter', sans-serif;
+        color: var(--text-white);
+    }
+
+    .pricing-container { max-width: 1200px; margin: 0 auto; }
+
+    /* HEADER */
+    .pricing-header { text-align: center; margin-bottom: 70px; }
+    .badge-sys { color: var(--accent-blue); border: 1px solid var(--accent-blue); padding: 5px 15px; border-radius: 20px; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; }
+    .pricing-header h2 { font-size: 3rem; margin: 25px 0; font-weight: 800; line-height: 1.1; }
+    .highlight-glitch { color: var(--text-white); text-shadow: 2px 0 var(--accent-purple), -2px 0 var(--accent-blue); }
+    .pricing-header p { color: var(--text-gray); font-size: 1.1rem; }
+
+    /* TOGGLE HACK */
+    .billing-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 30px;
+        background: #111;
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 1px solid #333;
+    }
+    .toggle-opt { font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; }
+    .toggle-opt.dimmed { color: #555; text-decoration: line-through; }
+    .toggle-opt.active { color: var(--accent-green); }
+    .toggle-switch { width: 40px; height: 20px; background: var(--accent-green); border-radius: 20px; position: relative; }
+    .toggle-switch::after { content: ''; position: absolute; right: 2px; top: 2px; width: 16px; height: 16px; background: #000; border-radius: 50%; }
+
+    /* GRID */
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    /* CARD DESIGN */
+    .plan-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 40px 30px;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    /* Focus Mode Effect */
+    .pricing-grid:hover .plan-card { opacity: 0.4; filter: blur(2px); transform: scale(0.98); }
+    .pricing-grid:hover .plan-card:hover { opacity: 1; filter: blur(0); transform: scale(1.05); z-index: 2; border-color: var(--accent-blue); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+
+    /* POPULAR CARD */
+    .plan-card.popular { border-color: var(--accent-purple); box-shadow: 0 0 30px rgba(189, 0, 255, 0.1); }
+    .pop-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-purple); color: #fff; padding: 5px 15px; font-size: 0.7rem; font-weight: 800; border-radius: 20px; letter-spacing: 1px; }
+
+    /* ENTERPRISE CARD */
+    .plan-card.enterprise { background: linear-gradient(180deg, #0f0f0f 0%, #051505 100%); border-color: var(--metric-green); }
+
+    /* PLAN HEADER */
+    .plan-name { font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; color: #888; margin-bottom: 15px; }
+    .price-box { display: flex; align-items: baseline; gap: 10px; }
+    .old-price { text-decoration: line-through; color: #555; font-size: 1rem; }
+    .current-price { font-size: 2.5rem; font-weight: 800; color: #fff; letter-spacing: -1px; }
+
+    /* METRIC (Commission) */
+    .core-metric { margin: 30px 0; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 8px; text-align: center; }
+    .metric-val { display: block; font-size: 2.5rem; font-weight: 800; font-family: 'Share Tech Mono', monospace; line-height: 1; }
+    .metric-label { font-size: 0.7rem; text-transform: uppercase; color: #666; letter-spacing: 2px; margin-top: 5px; display: block; }
+    
+    .metric-red .metric-val { color: var(--metric-red); text-shadow: 0 0 15px rgba(255, 51, 51, 0.3); }
+    .metric-orange .metric-val { color: var(--metric-orange); text-shadow: 0 0 15px rgba(255, 189, 46, 0.3); }
+    .metric-yellow .metric-val { color: var(--metric-yellow); text-shadow: 0 0 15px rgba(243, 243, 21, 0.3); }
+    .metric-green .metric-val { color: var(--metric-green); text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+
+    /* FEATURES */
+    .feature-list { flex: 1; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+    .f-item { font-size: 0.9rem; color: #aaa; border-bottom: 1px dashed #222; padding-bottom: 8px; }
+    .f-item span { color: #666; margin-right: 5px; }
+    .f-item b { color: #fff; }
+    .highlight-item { color: #fff; }
+    .highlight-item span { color: var(--accent-blue); }
+
+    /* BUTTONS */
+    .plan-btn { width: 100%; padding: 15px; border-radius: 6px; font-weight: 800; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; letter-spacing: 1px; }
+    
+    .btn-outline { background: transparent; border: 1px solid #333; color: #fff; }
+    .btn-outline:hover { border-color: #fff; background: #fff; color: #000; }
+    
+    .btn-fill { background: var(--accent-purple); border: none; color: #fff; box-shadow: 0 0 20px rgba(189, 0, 255, 0.3); }
+    .btn-fill:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(189, 0, 255, 0.6); }
+
+    .btn-glow { background: var(--metric-green); border: none; color: #000; box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); }
+    .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(0, 255, 136, 0.6); }
+
+    @media (max-width: 900px) {
+        .pricing-grid { grid-template-columns: 1fr; }
+        .pricing-grid:hover .plan-card { opacity: 1; filter: none; transform: none; }
+        .pricing-grid:hover .plan-card:hover { transform: none; }
+    }
+</style>
+
+<script>
+    // Simple focus effect logic (Optional, CSS hover handles most)
+    function focusCard(card) {
+        // Additional logic if needed for complex animations
+    }
+    function resetCards() {
+        // Reset logic
+    }
+</script>

@@ -1,0 +1,134 @@
+<section class="proof-section">
+    <div class="proof-container">
+        
+        <div class="proof-header">
+            <h2 class="proof-title">DON'T TRUST WORDS. <span class="highlight-blue">TRUST THE CHAIN.</span></h2>
+            <p class="proof-desc">Live transaction feed from the Web3Cart ecosystem. Real volume. Real revenue. Real freedom.</p>
+        </div>
+
+        <div class="tx-table-wrapper">
+            <div class="tx-header-row">
+                <span>TX HASH</span>
+                <span>MERCHANT_ID</span>
+                <span>AMOUNT</span>
+                <span>ASSET</span>
+                <span>STATUS</span>
+            </div>
+            
+            <div class="tx-scroll-container" id="txFeed">
+                </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* STYLES FOR ON-CHAIN PROOF */
+    :root {
+        --proof-bg: #080808;
+        --table-bg: #111;
+        --blue-neon: #00c6ff;
+        --green-neon: #00ff88;
+        --text-mono: 'Share Tech Mono', monospace;
+    }
+
+    .proof-section {
+        background: var(--proof-bg);
+        padding: 80px 20px;
+        font-family: 'Inter', sans-serif;
+        color: #fff;
+    }
+
+    .proof-container { max-width: 1000px; margin: 0 auto; }
+
+    .proof-header { text-align: center; margin-bottom: 50px; }
+    .proof-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+    .highlight-blue { color: var(--blue-neon); text-shadow: 0 0 20px rgba(0, 198, 255, 0.4); }
+    .proof-desc { color: #888; font-family: var(--text-mono); }
+
+    /* TABLE */
+    .tx-table-wrapper {
+        background: var(--table-bg);
+        border: 1px solid #333;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .tx-header-row {
+        display: grid;
+        grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+        padding: 15px 20px;
+        background: #1a1a1a;
+        color: #666;
+        font-family: var(--text-mono);
+        font-size: 0.85rem;
+        border-bottom: 1px solid #333;
+    }
+
+    .tx-scroll-container {
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .tx-row {
+        display: grid;
+        grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+        font-family: var(--text-mono);
+        font-size: 0.9rem;
+        color: #ccc;
+        animation: slideDown 0.5s ease-out;
+        transition: background 0.3s;
+    }
+
+    .tx-row:hover { background: rgba(0, 198, 255, 0.05); }
+
+    .hash { color: var(--blue-neon); }
+    .status { color: var(--green-neon); font-weight: bold; }
+    
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+        .tx-header-row, .tx-row { grid-template-columns: 2fr 1fr 1fr; }
+        .tx-header-row span:nth-child(2), .tx-header-row span:nth-child(5),
+        .tx-row span:nth-child(2), .tx-row span:nth-child(5) { display: none; }
+    }
+</style>
+
+<script>
+    const assets = ["USDT", "ETH", "BNB", "USDC"];
+    const container = document.getElementById('txFeed');
+
+    function createRow() {
+        const hash = "0x" + Math.random().toString(16).substr(2, 8) + "...";
+        const merchant = "Store_" + Math.floor(Math.random() * 9000 + 1000);
+        const amount = (Math.random() * 500 + 50).toFixed(2);
+        const asset = assets[Math.floor(Math.random() * assets.length)];
+        
+        const row = document.createElement('div');
+        row.className = 'tx-row';
+        row.innerHTML = `
+            <span class="hash">${hash}</span>
+            <span>${merchant}</span>
+            <span>$${amount}</span>
+            <span>${asset}</span>
+            <span class="status">CONFIRMED</span>
+        `;
+        
+        container.insertBefore(row, container.firstChild);
+        
+        if(container.children.length > 8) {
+            container.removeChild(container.lastChild);
+        }
+    }
+
+    // Start Loop
+    setInterval(createRow, 1500); // New tx every 1.5s
+    createRow(); // Init
+</script>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3Cart Comparison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --old-world-bg: #1a0505;
+            --old-accent: #ff3333;
+            --new-world-bg: #001a0f;
+            --new-accent: #00ff88;
+            --text-color: #fff;
+        }
+
+        body { margin: 0; padding: 0; background: #000; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* WRAPPER */
+        .comparison-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 550px;
+            margin: 50px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #333;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            user-select: none;
+        }
+
+        /* LAYERS */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* --- OLD WORLD (BOTTOM LAYER - RIGHT SIDE VISIBLE INITIALLY) --- */
+        .layer-old {
+            background: radial-gradient(circle at center, var(--old-world-bg), #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- NEW WORLD (TOP LAYER - RESIZABLE) --- */
+        .layer-new {
+            width: 50%; /* Initial Split */
+            background: radial-gradient(circle at center, var(--new-world-bg), #000);
+            border-right: 2px solid var(--new-accent);
+            z-index: 2;
+        }
+
+        /* --- CONTENT STYLING --- */
+        .content-box {
+            position: absolute;
+            width: 1000px; /* Fixed width to prevent squishing */
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 80px;
+            box-sizing: border-box;
+        }
+
+        .side-content {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 3rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+
+        /* OLD WORLD SPECIFICS */
+        .old-content .title { color: var(--old-accent); text-shadow: 0 0 20px rgba(255, 51, 51, 0.5); }
+        .old-content .feature-item { color: #aaa; }
+        .old-content .icon { background: rgba(255, 51, 51, 0.1); color: var(--old-accent); border: 1px solid var(--old-accent); }
+        .old-content .side-content { margin-left: auto; /* Push to right */ text-align: right; align-items: flex-end; }
+        .old-content .feature-item { flex-direction: row-reverse; }
+
+        /* NEW WORLD SPECIFICS */
+        .new-content .title { color: var(--new-accent); text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+        .new-content .feature-item { color: #fff; }
+        .new-content .icon { background: rgba(0, 255, 136, 0.1); color: var(--new-accent); border: 1px solid var(--new-accent); }
+
+        /* --- SLIDER HANDLE --- */
+        .handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #fff;
+            cursor: ew-resize;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        .handle-circle {
+            width: 50px;
+            height: 50px;
+            background: #000;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        /* GLITCH EFFECT TEXT (Static) */
+        .glitch-static { animation: glitch 3s infinite; }
+        @keyframes glitch {
+            0% { opacity: 1; }
+            95% { opacity: 1; }
+            96% { opacity: 0.8; transform: skewX(10deg); }
+            97% { opacity: 1; transform: skewX(0deg); }
+            98% { opacity: 0.8; transform: skewX(-10deg); }
+            100% { opacity: 1; }
+        }
+
+        /* MOBILE FIX */
+        @media (max-width: 768px) {
+            .comparison-wrapper { height: 600px; }
+            .content-box { padding: 0 20px; }
+            .title { font-size: 2rem; }
+            .feature-item { font-size: 0.9rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="comparison-wrapper" id="compareWidget">
+        
+        <div class="layer layer-old">
+            <div class="content-box old-content">
+                <div></div> 
+                <div class="side-content">
+                    <h2 class="title glitch-static">THE OLD SYSTEM</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span>High Transaction Fees (3%+)</span>
+                            <div class="icon">💸</div>
+                        </div>
+                        <div class="feature-item">
+                            <span>Funds Frozen (180 Days)</span>
+                            <div class="icon">❄️</div>
+                        </div>
+                        <div class="feature-item">
+                            <span>KYC & Identity Scans</span>
+                            <div class="icon">👁️</div>
+                        </div>
+                        <div class="feature-item">
+                            <span>Settlement: 3-5 Days</span>
+                            <div class="icon">⏳</div>
+                        </div>
+                        <div class="feature-item">
+                            <span>Censored Transactions</span>
+                            <div class="icon">🚫</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layer layer-new" id="topLayer">
+            <div class="content-box new-content">
+                <div class="side-content">
+                    <h2 class="title">WEB3CART PROTOCOL</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="icon">⚡</div>
+                            <span>0% Middleman Fees</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon">🛡️</div>
+                            <span>Unfreezable Assets</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon">👻</div>
+                            <span>100% Anonymous (No KYC)</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon">🚀</div>
+                            <span>Instant Settlement</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon">🌍</div>
+                            <span>Global & Censorship Free</span>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="handle" id="dragHandle">
+            <div class="handle-circle">↔</div>
+        </div>
+
+    </div>
+
+    <script>
+        /**
+         * REALITY SLIDER LOGIC
+         */
+        const wrapper = document.getElementById('compareWidget');
+        const topLayer = document.getElementById('topLayer');
+        const handle = document.getElementById('dragHandle');
+        
+        let isDragging = false;
+
+        // Mouse Events
+        wrapper.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        
+        // Touch Events
+        wrapper.addEventListener('touchstart', () => isDragging = true);
+        window.addEventListener('touchend', () => isDragging = false);
+
+        // Move Logic
+        const move = (e) => {
+            if (!isDragging) return;
+            
+            // Get X position (Mouse or Touch)
+            let clientX = e.clientX;
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+            }
+
+            const rect = wrapper.getBoundingClientRect();
+            let offsetX = clientX - rect.left;
+
+            // Constrain within container
+            if (offsetX < 0) offsetX = 0;
+            if (offsetX > rect.width) offsetX = rect.width;
+
+            // Apply Width & Position
+            const percentage = (offsetX / rect.width) * 100;
+            topLayer.style.width = percentage + "%";
+            handle.style.left = percentage + "%";
+        };
+
+        wrapper.addEventListener('mousemove', move);
+        wrapper.addEventListener('touchmove', move);
+
+        // Initial Animation (Just to show it works)
+        setTimeout(() => {
+            topLayer.style.transition = "width 1s ease";
+            handle.style.transition = "left 1s ease";
+            topLayer.style.width = "60%";
+            handle.style.left = "60%";
+            
+            setTimeout(() => {
+                topLayer.style.transition = "none";
+                handle.style.transition = "none";
+            }, 1000);
+        }, 500);
+
+    </script>
+
+</body>
+</html>

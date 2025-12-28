@@ -1,0 +1,151 @@
+<div class="empire-wrapper">
+    <div class="content-layer">
+        
+        <div class="header">
+            <span class="tag">MULTI-VENDOR ECONOMY</span>
+            <h2 class="main-title">BUILD YOUR DIGITAL EMPIRE</h2>
+            <p class="sub-desc">Don't just sell products. Build a platform where others sell for you. Calculate your passive income potential below.</p>
+        </div>
+
+        <div class="calc-grid">
+            
+            <div class="inputs-col">
+                
+                <div class="input-group">
+                    <div class="label-row">
+                        <span>Active Vendors</span>
+                        <span class="val-display" id="dispVendors">50</span>
+                    </div>
+                    <input type="range" id="inVendors" min="5" max="500" step="5" value="50">
+                </div>
+
+                <div class="input-group">
+                    <div class="label-row">
+                        <span>Avg. Monthly Sales per Vendor</span>
+                        <span class="val-display" id="dispSales">$2,000</span>
+                    </div>
+                    <input type="range" id="inSales" min="500" max="20000" step="500" value="2000">
+                </div>
+
+                <div class="input-group">
+                    <div class="label-row">
+                        <span>Your Commission Fee</span>
+                        <span class="val-display" id="dispComm">5%</span>
+                    </div>
+                    <input type="range" id="inComm" min="0" max="20" step="0.5" value="5">
+                </div>
+
+            </div>
+
+            <div class="result-col">
+                <span class="result-label">Projected Monthly Income</span>
+                <div class="result-value pulse-anim" id="finalResult">$5,000</div>
+                <div class="result-sub">
+                    Generated from <span id="totalVol" class="highlight-text">$100,000</span> Total Volume
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* CSS STYLES (Empire Calculator) */
+    :root {
+        --bg-dark: #080808;
+        --border: #222;
+        --primary: #00c6ff;
+        --highlight: #00ff88;
+        --text-main: #fff;
+        --text-muted: #888;
+    }
+
+    .empire-wrapper {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        background: linear-gradient(145deg, #111 0%, #050505 100%);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: 0 0 40px rgba(0, 198, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        font-family: 'Inter', sans-serif;
+        color: var(--text-main);
+    }
+
+    .empire-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .content-layer { position: relative; z-index: 1; }
+
+    .header { text-align: center; margin-bottom: 50px; }
+    .tag { color: var(--primary); font-family: 'Share Tech Mono', monospace; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: inline-block; border: 1px solid var(--primary); padding: 5px 10px; border-radius: 4px; }
+    .main-title { font-size: 2.5rem; font-weight: 800; margin: 10px 0; line-height: 1.1; }
+    .sub-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+    .calc-grid { display: flex; gap: 50px; align-items: center; }
+    .inputs-col { flex: 1; display: flex; flex-direction: column; gap: 35px; }
+    .input-group { display: flex; flex-direction: column; gap: 15px; }
+    .label-row { display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; }
+    .val-display { color: var(--primary); font-family: 'Share Tech Mono', monospace; }
+
+    input[type=range] { -webkit-appearance: none; width: 100%; height: 6px; background: #222; border-radius: 5px; outline: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--primary); cursor: pointer; box-shadow: 0 0 10px var(--primary); border: 2px solid #fff; transition: transform 0.1s; }
+    input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+    .result-col { flex: 1; background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 40px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 300px; box-shadow: inset 0 0 50px rgba(0,0,0,0.8); }
+    .result-label { font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+    .result-value { font-family: 'Share Tech Mono', monospace; font-size: 4rem; font-weight: 700; color: var(--highlight); text-shadow: 0 0 30px rgba(0, 255, 136, 0.4); margin-bottom: 10px; }
+    .result-sub { font-size: 1rem; color: #fff; opacity: 0.8; }
+    .highlight-text { color: var(--highlight); font-weight: bold; }
+
+    @keyframes glowPulse { 0% { text-shadow: 0 0 30px rgba(0, 255, 136, 0.4); } 50% { text-shadow: 0 0 50px rgba(0, 255, 136, 0.8); } 100% { text-shadow: 0 0 30px rgba(0, 255, 136, 0.4); } }
+    .pulse-anim { animation: glowPulse 2s infinite; }
+
+    @media (max-width: 800px) { .calc-grid { flex-direction: column; } .result-value { font-size: 3rem; } }
+</style>
+
+<script>
+    const inVendors = document.getElementById('inVendors');
+    const inSales = document.getElementById('inSales');
+    const inComm = document.getElementById('inComm');
+    const dispVendors = document.getElementById('dispVendors');
+    const dispSales = document.getElementById('dispSales');
+    const dispComm = document.getElementById('dispComm');
+    const finalResult = document.getElementById('finalResult');
+    const totalVol = document.getElementById('totalVol');
+
+    const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+    function calculate() {
+        const vendors = parseInt(inVendors.value);
+        const salesPerVendor = parseInt(inSales.value);
+        const commission = parseFloat(inComm.value);
+
+        dispVendors.innerText = vendors + " Vendors";
+        dispSales.innerText = currency.format(salesPerVendor);
+        dispComm.innerText = commission + "%";
+
+        const totalVolume = vendors * salesPerVendor;
+        const yourProfit = totalVolume * (commission / 100);
+
+        totalVol.innerText = currency.format(totalVolume);
+        finalResult.innerText = currency.format(yourProfit);
+    }
+
+    inVendors.addEventListener('input', calculate);
+    inSales.addEventListener('input', calculate);
+    inComm.addEventListener('input', calculate);
+    calculate();
+</script>

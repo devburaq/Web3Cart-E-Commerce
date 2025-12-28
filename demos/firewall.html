@@ -1,0 +1,243 @@
+<section class="breach-section">
+    <div class="breach-container">
+        
+        <div class="breach-header">
+            <span class="badge-red">SYSTEM BYPASS</span>
+            <h2 class="breach-title">BANKS DRAW BORDERS. <span class="highlight-green">WE DIG TUNNELS.</span></h2>
+            <p class="breach-desc">Traditional gateways block high-risk regions. Web3Cart's decentralized protocol tunnels straight through censorship and financial firewalls.</p>
+        </div>
+
+        <div class="viz-wrapper">
+            
+            <div class="side sender-side">
+                <span class="label">GLOBAL CUSTOMER</span>
+                <div class="icon-box user-icon">👤</div>
+            </div>
+
+            <div class="firewall-container">
+                <div class="firewall" id="bankingFirewall">
+                    <div class="fw-content">
+                        <span class="lock-icon">🔒</span>
+                        <span>RESTRICTED REGION FIREWALL</span>
+                        <span class="status-text" id="fwStatus">STATUS: ACTIVE</span>
+                    </div>
+                </div>
+                
+                <div class="paths-container">
+                    
+                    <div class="path-row legacy-row" onclick="triggerLegacyFail()">
+                        <span class="path-label">LEGACY RAILS (VISA/MC)</span>
+                        <div class="track">
+                            <div class="packet packet-legacy" id="legacyPacket">FAILED</div>
+                        </div>
+                    </div>
+
+                    <div class="path-row web3-row" onclick="triggerWeb3Breach()">
+                        <span class="path-label click-me">WEB3CART PROTOCOL [CLICK TO BREACH]</span>
+                        <div class="track">
+                            <div class="packet packet-web3" id="web3Packet">USDT</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="side receiver-side">
+                <span class="label">YOUR WALLET</span>
+                <div class="icon-box wallet-icon" id="walletBox">💎</div>
+                <span class="balance" id="walletBalance">+$0.00</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* CSS FOR BREACH SECTION */
+    :root {
+        --bg-dark: #050505;
+        --neon-red: #ff3333;
+        --neon-green: #00ff88;
+        --text-white: #fff;
+        --font-mono: 'Share Tech Mono', monospace;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    .breach-section { background: var(--bg-dark); padding: 100px 20px; font-family: var(--font-sans); color: var(--text-white); overflow: hidden; }
+    .breach-container { max-width: 1100px; margin: 0 auto; }
+
+    /* HEADER */
+    .breach-header { text-align: center; margin-bottom: 80px; }
+    .badge-red { color: var(--neon-red); border: 1px solid var(--neon-red); padding: 5px 15px; font-family: var(--font-mono); letter-spacing: 2px; font-size: 0.8rem; }
+    .breach-title { font-size: 3rem; font-weight: 900; margin: 20px 0; line-height: 1.1; }
+    .highlight-green { color: var(--neon-green); }
+    .breach-desc { color: #888; font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+    /* VISUALIZATION WRAPPER */
+    .viz-wrapper { display: flex; align-items: center; justify-content: space-between; gap: 30px; height: 400px; }
+    
+    /* SIDES (User/Wallet) */
+    .side { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 150px; }
+    .label { font-family: var(--font-mono); color: #888; font-size: 0.9rem; }
+    .icon-box { width: 80px; height: 80px; background: #111; border: 2px solid #333; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; transition: all 0.3s; }
+    .wallet-icon { border-color: var(--neon-green); color: var(--neon-green); }
+    .balance { font-family: var(--font-mono); color: var(--neon-green); font-weight: bold; opacity: 0; transition: opacity 0.3s; }
+
+    /* FIREWALL AREA (Middle) */
+    .firewall-container { flex: 1; position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+    /* THE WALL */
+    .firewall {
+        position: absolute;
+        width: 200px;
+        height: 350px;
+        background: rgba(255, 51, 51, 0.1);
+        border: 3px solid var(--neon-red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 2;
+        transition: all 0.3s;
+        box-shadow: 0 0 30px rgba(255, 51, 51, 0.2);
+    }
+    .fw-content { display: flex; flex-direction: column; gap: 10px; color: var(--neon-red); font-family: var(--font-mono); letter-spacing: 1px; font-weight: bold; }
+    .lock-icon { font-size: 2rem; }
+    .status-text { font-size: 0.8rem; opacity: 0.8; }
+
+    /* PATHS & PACKETS */
+    .paths-container { width: 100%; height: 250px; display: flex; flex-direction: column; justify-content: space-between; position: absolute; z-index: 1; }
+    .path-row { position: relative; width: 100%; height: 60px; cursor: pointer; }
+    .path-label { position: absolute; top: -20px; left: 0; font-family: var(--font-mono); font-size: 0.8rem; color: #666; }
+    .click-me { color: var(--neon-green); animation: pulse 1.5s infinite; }
+    .track { width: 100%; height: 100%; border-bottom: 2px dashed #333; position: relative; display: flex; align-items: center; }
+    
+    .packet {
+        position: absolute;
+        left: 0;
+        padding: 8px 15px;
+        font-family: var(--font-mono);
+        font-weight: bold;
+        border-radius: 4px;
+        opacity: 0; /* Hidden initially */
+    }
+    .packet-legacy { background: var(--neon-red); color: #000; box-shadow: 0 0 15px var(--neon-red); }
+    .packet-web3 { background: var(--neon-green); color: #000; box-shadow: 0 0 15px var(--neon-green); }
+
+    /* ANIMATION STATES */
+    
+    /* Legacy Fail State */
+    .firewall.denied { background: var(--neon-red); color: #000; animation: shake 0.3s; }
+    .firewall.denied .fw-content { color: #000; }
+
+    /* Web3 Breach State */
+    .firewall.breached {
+        border-color: var(--neon-green);
+        background: rgba(0, 255, 136, 0.1);
+        box-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
+        animation: glitch-wall 0.5s forwards;
+    }
+    .firewall.breached .fw-content { display: none; } /* Hide text on breach */
+    
+    .wallet-box.received { background: var(--neon-green); color: #000; box-shadow: 0 0 30px var(--neon-green); transform: scale(1.1); }
+
+    /* Keyframes */
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(3px, 2px) rotate(0deg); } 40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); } 60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(3px, 1px) rotate(-1deg); } 80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(1px, 2px) rotate(0deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
+    @keyframes glitch-wall { 
+        0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); transform: translate(0); }
+        20% { clip-path: polygon(0 10%, 100% 0, 90% 100%, 0% 90%); transform: translate(-5px, 5px); opacity: 0.8; }
+        40% { clip-path: polygon(10% 0, 90% 0, 100% 90%, 0% 100%); transform: translate(5px, -5px); opacity: 1; }
+        60% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); transform: translate(-2px, 2px); border-color: var(--neon-red);}
+        80% { clip-path: polygon(40% 0, 60% 0, 60% 100%, 40% 100%); transform: translate(0); background: var(--neon-green); } /* Open middle */
+        100% { clip-path: polygon(0 0, 45% 0, 45% 100%, 0% 100%, 55% 0, 100% 0, 100% 100%, 55% 100%); transform: translate(0); border-color: var(--neon-green); background: transparent;} /* Hole opens */
+    }
+    @keyframes move-fail { 0% { left: 0; opacity: 1; } 50% { left: 40%; opacity: 1; } 60% { left: 35%; opacity: 0; } 100% { left: 35%; opacity: 0; } }
+    @keyframes move-success { 0% { left: 0; opacity: 1; } 100% { left: 85%; opacity: 1; } }
+
+    @media (max-width: 768px) {
+        .viz-wrapper { flex-direction: column; height: auto; gap: 50px; }
+        .firewall { width: 80%; height: 200px; }
+        .paths-container { position: relative; height: 200px; }
+        .path-row { margin-bottom: 30px; }
+        @keyframes move-success { 0% { left: 0; opacity: 1; } 100% { left: 80%; opacity: 1; } } /* Adjust for mobile width */
+    }
+</style>
+
+<script>
+    let isAnimating = false;
+
+    function triggerLegacyFail() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const packet = document.getElementById('legacyPacket');
+        const firewall = document.getElementById('bankingFirewall');
+        const status = document.getElementById('fwStatus');
+
+        // Reset previous states
+        firewall.classList.remove('breached');
+        
+        // Start Animation
+        packet.style.opacity = '1';
+        packet.style.animation = "move-fail 2s forwards";
+
+        // Impact at 1s
+        setTimeout(() => {
+            firewall.classList.add('denied');
+            status.innerText = "STATUS: TRANSACTION BLOCKED";
+        }, 1000);
+
+        // Reset
+        setTimeout(() => {
+            packet.style.opacity = '0';
+            packet.style.animation = "none";
+            firewall.classList.remove('denied');
+            status.innerText = "STATUS: ACTIVE";
+            isAnimating = false;
+        }, 2500);
+    }
+
+    function triggerWeb3Breach() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const packet = document.getElementById('web3Packet');
+        const firewall = document.getElementById('bankingFirewall');
+        const walletBox = document.getElementById('walletBox');
+        const balance = document.getElementById('walletBalance');
+
+        // Reset previous states
+        firewall.classList.remove('denied');
+        walletBox.classList.remove('received');
+        balance.style.opacity = '0';
+
+        // Start Animation
+        packet.style.opacity = '1';
+        // Slower animation for dramatic effect
+        packet.style.animation = "move-success 2.5s forwards cubic-bezier(0.25, 1, 0.5, 1)"; 
+
+        // Breach at 1.2s (Packet hits wall)
+        setTimeout(() => {
+            firewall.classList.add('breached');
+        }, 1200);
+
+        // Success at 2.5s (Packet arrives)
+        setTimeout(() => {
+            walletBox.classList.add('received');
+            balance.innerText = "+$5,000 USDT";
+            balance.style.opacity = '1';
+            
+            // Reset after celebration
+            setTimeout(() => {
+                 packet.style.opacity = '0';
+                 packet.style.animation = "none";
+                 firewall.classList.remove('breached');
+                 walletBox.classList.remove('received');
+                 balance.style.opacity = '0';
+                 isAnimating = false;
+            }, 3000);
+        }, 2500);
+    }
+</script>

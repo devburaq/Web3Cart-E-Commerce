@@ -1,0 +1,288 @@
+<section class="logic-section">
+    <div class="logic-container">
+        
+        <div class="logic-header">
+            <span class="badge-code">SOLIDITY v0.8.20</span>
+            <h2>NO MIDDLEMAN. <span class="highlight-neon">JUST MATH.</span></h2>
+            <p>Corporations break promises. Smart contracts execute them. Watch how funds move in a trustless environment.</p>
+        </div>
+
+        <div class="circuit-board" onclick="runSimulation()">
+            
+            <div class="node node-buyer">
+                <div class="node-icon">👤</div>
+                <span class="node-label">BUYER WALLET</span>
+                <span class="node-status" id="statusBuyer">READY</span>
+            </div>
+
+            <div class="connection-line" id="line1">
+                <div class="packet" id="packet1">USDT</div>
+            </div>
+
+            <div class="node node-contract">
+                <div class="node-icon">📜</div>
+                <span class="node-label">ESCROW CONTRACT</span>
+                <div class="code-snippet">
+                    if (delivery == true) {<br>
+                    &nbsp;&nbsp;releaseFunds();<br>
+                    } else {<br>
+                    &nbsp;&nbsp;refundBuyer();<br>
+                    }
+                </div>
+                <span class="node-status" id="statusContract">WAITING</span>
+            </div>
+
+            <div class="connection-line" id="line2">
+                <div class="packet" id="packet2">USDT</div>
+            </div>
+
+            <div class="node node-seller">
+                <div class="node-icon">🏪</div>
+                <span class="node-label">MERCHANT WALLET</span>
+                <span class="node-status" id="statusSeller">PENDING</span>
+            </div>
+
+            <div class="start-overlay" id="startOverlay">
+                <button class="run-btn">
+                    ▶ EXECUTE TRANSACTION
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* CSS FOR LOGIC VISUALIZER */
+    :root {
+        --bg-logic: #0a0a0a;
+        --neon-blue: #00f3ff;
+        --neon-purple: #bc13fe;
+        --text-main: #fff;
+        --line-color: #333;
+    }
+
+    .logic-section {
+        background: var(--bg-logic);
+        padding: 100px 20px;
+        font-family: 'Inter', sans-serif;
+        color: var(--text-main);
+    }
+
+    .logic-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+
+    .logic-header { margin-bottom: 60px; }
+    .badge-code { 
+        color: var(--neon-blue); border: 1px solid var(--neon-blue); 
+        padding: 5px 15px; border-radius: 20px; font-family: 'Share Tech Mono', monospace; 
+        font-size: 0.8rem; letter-spacing: 1px;
+    }
+    .logic-header h2 { font-size: 3rem; margin: 20px 0; font-weight: 800; }
+    .highlight-neon { color: var(--neon-blue); text-shadow: 0 0 20px rgba(0, 243, 255, 0.4); }
+    .logic-header p { color: #888; max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+
+    /* CIRCUIT BOARD */
+    .circuit-board {
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 20px;
+        padding: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    }
+
+    .circuit-board:hover { border-color: #333; }
+
+    /* NODES */
+    .node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+        width: 180px;
+    }
+
+    .node-icon {
+        width: 70px; height: 70px;
+        background: #000;
+        border: 2px solid #444;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 15px;
+        transition: all 0.3s;
+    }
+
+    .node-label { font-size: 0.9rem; font-weight: 700; color: #ccc; margin-bottom: 5px; }
+    .node-status { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: #555; }
+
+    /* SPECIAL CONTRACT NODE */
+    .node-contract { width: 250px; }
+    .node-contract .node-icon { border-radius: 10px; border-color: var(--neon-purple); color: var(--neon-purple); }
+    
+    .code-snippet {
+        background: #000;
+        border: 1px solid #333;
+        padding: 10px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.7rem;
+        color: #0f0;
+        text-align: left;
+        border-radius: 6px;
+        margin-top: 10px;
+        opacity: 0.5;
+        width: 100%;
+    }
+
+    /* CONNECTIONS */
+    .connection-line {
+        flex: 1;
+        height: 4px;
+        background: var(--line-color);
+        position: relative;
+        margin: 0 20px;
+        top: -30px; /* Align with icons */
+    }
+
+    .packet {
+        position: absolute;
+        top: -12px;
+        left: 0;
+        background: var(--neon-blue);
+        color: #000;
+        padding: 4px 10px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border-radius: 10px;
+        opacity: 0;
+        box-shadow: 0 0 15px var(--neon-blue);
+    }
+
+    /* START OVERLAY */
+    .start-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: opacity 0.3s;
+    }
+    
+    .run-btn {
+        background: var(--neon-blue);
+        border: none;
+        padding: 15px 30px;
+        font-weight: 800;
+        font-size: 1rem;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+        transition: transform 0.2s;
+    }
+    .run-btn:hover { transform: scale(1.1); }
+
+    /* ANIMATION STATES */
+    .node.active .node-icon { border-color: var(--neon-blue); box-shadow: 0 0 20px rgba(0, 243, 255, 0.3); color: #fff; transform: scale(1.1); }
+    .node.active .node-status { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+    
+    .node-contract.active .node-icon { border-color: var(--neon-purple); box-shadow: 0 0 30px rgba(188, 19, 254, 0.5); }
+    .node-contract.active .code-snippet { opacity: 1; border-color: var(--neon-purple); }
+
+    @keyframes travel { 0% { left: 0; opacity: 1; } 100% { left: 90%; opacity: 1; } }
+
+    @media (max-width: 800px) {
+        .circuit-board { flex-direction: column; padding: 30px; gap: 40px; }
+        .connection-line { width: 4px; height: 50px; top: 0; margin: 0; }
+        .packet { top: 0; left: -12px; }
+        @keyframes travel { 0% { top: 0; opacity: 1; } 100% { top: 90%; opacity: 1; } }
+    }
+</style>
+
+<script>
+    let simRunning = false;
+
+    function runSimulation() {
+        if (simRunning) return;
+        simRunning = true;
+
+        const overlay = document.getElementById('startOverlay');
+        const packet1 = document.getElementById('packet1');
+        const packet2 = document.getElementById('packet2');
+        
+        // Nodes
+        const buyer = document.querySelector('.node-buyer');
+        const contract = document.querySelector('.node-contract');
+        const seller = document.querySelector('.node-seller');
+
+        // Status Text
+        const sBuyer = document.getElementById('statusBuyer');
+        const sContract = document.getElementById('statusContract');
+        const sSeller = document.getElementById('statusSeller');
+
+        // 0. START
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.style.display = 'none', 300);
+
+        // 1. BUYER SENDS FUNDS
+        buyer.classList.add('active');
+        sBuyer.innerText = "SENDING...";
+        
+        packet1.style.opacity = '1';
+        packet1.style.animation = "travel 1.5s linear forwards";
+
+        // 2. CONTRACT LOCKS FUNDS (at 1.5s)
+        setTimeout(() => {
+            packet1.style.opacity = '0'; // Hide packet
+            buyer.classList.remove('active');
+            sBuyer.innerText = "SENT";
+
+            contract.classList.add('active'); // Contract lights up
+            sContract.innerText = "LOCKED / VERIFYING";
+            sContract.style.color = "var(--neon-purple)";
+        }, 1500);
+
+        // 3. FUNDS RELEASED (at 3.5s)
+        setTimeout(() => {
+            sContract.innerText = "EXECUTED";
+            
+            packet2.style.opacity = '1';
+            packet2.style.animation = "travel 1.5s linear forwards";
+        }, 3500);
+
+        // 4. SELLER RECEIVES (at 5s)
+        setTimeout(() => {
+            packet2.style.opacity = '0';
+            contract.classList.remove('active');
+            
+            seller.classList.add('active');
+            sSeller.innerText = "RECEIVED (+100 USDT)";
+            sSeller.style.color = "var(--neon-blue)";
+        }, 5000);
+
+        // 5. RESET
+        setTimeout(() => {
+            seller.classList.remove('active');
+            sSeller.innerText = "PENDING";
+            sBuyer.innerText = "READY";
+            sContract.innerText = "WAITING";
+            sContract.style.color = "#555";
+            sSeller.style.color = "#555";
+            
+            packet1.style.animation = "none";
+            packet2.style.animation = "none";
+            
+            overlay.style.display = 'flex';
+            setTimeout(() => overlay.style.opacity = '1', 100);
+            
+            simRunning = false;
+        }, 7000);
+    }
+</script>

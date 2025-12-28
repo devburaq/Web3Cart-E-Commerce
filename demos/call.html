@@ -1,0 +1,318 @@
+<section class="hero-wrapper">
+    
+    <div class="hero-bg"></div>
+
+    <div class="hero-container">
+        
+        <div class="hero-content">
+            <div class="status-badge">
+                <span class="status-dot"></span> SYSTEM STATUS: COMPROMISED
+            </div>
+            
+            <h1 class="hero-title">
+                THE SYSTEM IS RIGGED.<br>
+                <span class="glitch-text" data-text="BUILD YOUR OWN.">BUILD YOUR OWN.</span>
+            </h1>
+            
+            <p class="hero-desc">
+                Stop asking for permission to sell. Web3Cart is the self-hosted, censorship-resistant protocol that puts you in total control. No banks. No borders. No masters.
+            </p>
+
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="window.location.href='#purchase'">
+                    INITIALIZE PROTOCOL <span class="arrow">→</span>
+                </button>
+                <button class="btn-secondary" onclick="window.location.href='#demo'">
+                    VIEW LIVE DEMO
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            
+            <div class="transaction-card" id="txCard">
+                <div class="card-header">
+                    <span class="card-label">INCOMING TRANSACTION</span>
+                    <span class="card-status" id="txStatus">PENDING BANK APPROVAL...</span>
+                </div>
+                
+                <div class="card-body">
+                    <div class="row">
+                        <span>Sale Amount</span>
+                        <span class="val">$1,000.00</span>
+                    </div>
+                    <div class="row fee-row">
+                        <span>Gateway Fee (3.5%)</span>
+                        <span class="val red-text" id="txFee">-$35.00</span>
+                    </div>
+                    <div class="row fee-row">
+                        <span>Reserve Hold (Rolling)</span>
+                        <span class="val red-text" id="txHold">-$100.00</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row total-row">
+                        <span>NET PAYOUT</span>
+                        <span class="val total-val" id="txTotal">$865.00</span>
+                    </div>
+                    <div class="payout-time" id="txTime">Est. Arrival: 3-5 Business Days</div>
+                </div>
+
+                <button class="override-btn" onclick="activateOverride()">
+                    [ OVERRIDE SYSTEM ]
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- CSS STYLES --- */
+    :root {
+        --hero-bg: #050505;
+        --neon-green: #00ff88;
+        --neon-red: #ff3333;
+        --text-main: #fff;
+        --text-muted: #888;
+        --font-mono: 'Share Tech Mono', monospace;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    .hero-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 90vh;
+        background-color: var(--hero-bg);
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding: 50px 0;
+        font-family: var(--font-sans);
+        color: var(--text-main);
+    }
+
+    /* Subtle Grid Background */
+    .hero-bg {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: 0;
+    }
+
+    .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        z-index: 1;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    /* --- LEFT SIDE --- */
+    .hero-content { flex: 1; }
+
+    .status-badge {
+        font-family: var(--font-mono);
+        color: var(--neon-red);
+        border: 1px solid rgba(255, 51, 51, 0.3);
+        background: rgba(255, 51, 51, 0.05);
+        padding: 8px 16px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+    }
+    
+    .status-dot { width: 8px; height: 8px; background: var(--neon-red); border-radius: 50%; animation: blink 1s infinite; }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+
+    /* Glitch Effect */
+    .glitch-text {
+        color: #fff;
+        position: relative;
+    }
+    .glitch-text::before, .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: var(--hero-bg);
+    }
+    .glitch-text::before { left: 2px; text-shadow: -1px 0 var(--neon-red); clip: rect(24px, 550px, 90px, 0); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+    .glitch-text::after { left: -2px; text-shadow: -1px 0 var(--neon-green); clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
+
+    .hero-desc {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 40px;
+        max-width: 550px;
+    }
+
+    /* Buttons */
+    .hero-actions { display: flex; gap: 20px; }
+
+    .btn-primary {
+        background: var(--neon-green);
+        color: #000;
+        border: none;
+        padding: 16px 32px;
+        font-weight: 800;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .btn-primary:hover { box-shadow: 0 0 20px rgba(0, 255, 136, 0.5); transform: translateY(-2px); }
+
+    .btn-secondary {
+        background: transparent;
+        color: #fff;
+        border: 1px solid #333;
+        padding: 16px 32px;
+        font-weight: 600;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: #fff; }
+
+    /* --- RIGHT SIDE (INTERACTIVE CARD) --- */
+    .hero-visual { flex: 0.9; display: flex; justify-content: center; }
+
+    .transaction-card {
+        background: #111;
+        border: 1px solid #333;
+        width: 100%;
+        max-width: 420px;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #333;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        font-family: var(--font-mono);
+    }
+
+    .card-label { color: #888; font-size: 0.8rem; letter-spacing: 1px; }
+    .card-status { color: var(--neon-red); font-size: 0.8rem; font-weight: bold; }
+
+    .card-body { font-family: var(--font-mono); }
+    .row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 1rem; color: #ccc; }
+    .red-text { color: var(--neon-red); }
+    .divider { height: 1px; background: #333; margin: 15px 0; }
+    
+    .total-row { font-size: 1.5rem; font-weight: bold; color: #fff; align-items: center; }
+    .total-val { text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+    
+    .payout-time { font-size: 0.8rem; color: #666; text-align: right; margin-top: 5px; font-style: italic; }
+
+    .override-btn {
+        width: 100%;
+        margin-top: 25px;
+        background: rgba(255, 51, 51, 0.1);
+        border: 1px solid var(--neon-red);
+        color: var(--neon-red);
+        padding: 12px;
+        font-family: var(--font-mono);
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s;
+        letter-spacing: 2px;
+    }
+    .override-btn:hover { background: var(--neon-red); color: #000; box-shadow: 0 0 15px var(--neon-red); }
+
+    /* --- OVERRIDE ACTIVE STATE (GREEN) --- */
+    .hero-wrapper.active .status-badge { color: var(--neon-green); border-color: var(--neon-green); background: rgba(0,255,136,0.1); }
+    .hero-wrapper.active .status-dot { background: var(--neon-green); }
+    
+    .transaction-card.override-active {
+        border-color: var(--neon-green);
+        box-shadow: 0 0 40px rgba(0, 255, 136, 0.15);
+        transform: scale(1.02);
+    }
+    
+    .transaction-card.override-active .card-status { color: var(--neon-green); }
+    .transaction-card.override-active .red-text { text-decoration: line-through; opacity: 0.5; color: #888; }
+    .transaction-card.override-active .total-val { color: var(--neon-green); text-shadow: 0 0 20px var(--neon-green); }
+    
+    .transaction-card.override-active .override-btn {
+        background: var(--neon-green);
+        color: #000;
+        border-color: var(--neon-green);
+        pointer-events: none; /* Disable click */
+    }
+
+    /* Animations */
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes glitch-anim { 0% { clip: rect(30px, 9999px, 10px, 0); } 100% { clip: rect(80px, 9999px, 90px, 0); } }
+    @keyframes glitch-anim-2 { 0% { clip: rect(10px, 9999px, 80px, 0); } 100% { clip: rect(40px, 9999px, 10px, 0); } }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+        .hero-container { flex-direction: column; text-align: center; padding-top: 50px; }
+        .hero-title { font-size: 2.5rem; }
+        .hero-actions { justify-content: center; }
+        .transaction-card { width: 100%; }
+        .status-badge { display: inline-flex; }
+    }
+</style>
+
+<script>
+    function activateOverride() {
+        const wrapper = document.querySelector('.hero-wrapper');
+        const card = document.getElementById('txCard');
+        const status = document.getElementById('txStatus');
+        const fee = document.getElementById('txFee');
+        const hold = document.getElementById('txHold');
+        const total = document.getElementById('txTotal');
+        const time = document.getElementById('txTime');
+        const btn = document.querySelector('.override-btn');
+
+        // Glitch Effect
+        card.style.transform = "skewX(-5deg) scale(1.05)";
+        setTimeout(() => card.style.transform = "skewX(5deg) scale(1.05)", 50);
+        setTimeout(() => card.style.transform = "skewX(0deg) scale(1.02)", 100);
+
+        // Apply Green State
+        wrapper.classList.add('active');
+        card.classList.add('override-active');
+
+        // Update Text Content
+        status.innerText = "WEB3CART SECURED";
+        fee.innerText = "$0.00";
+        hold.innerText = "$0.00";
+        total.innerText = "$1,000.00";
+        time.innerText = "Status: Instant Settlement (Completed)";
+        time.style.color = "var(--neon-green)";
+        btn.innerText = "PROTOCOL ACTIVE";
+        
+        // Update Badge Text
+        document.querySelector('.status-badge').innerHTML = '<span class="status-dot"></span> SYSTEM STATUS: OPTIMIZED';
+    }
+</script>

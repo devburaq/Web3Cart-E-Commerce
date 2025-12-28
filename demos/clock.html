@@ -1,0 +1,298 @@
+<div id="doomsday-banner" class="doomsday-banner">
+    
+    <div class="scanlines"></div>
+
+    <div class="banner-container">
+        
+        <div class="banner-section text-section">
+            <h2 id="bannerTitle" class="glitch-text">ECONOMIC DOOMSDAY</h2>
+            <p id="bannerSub" class="sub-text">The system is failing. Exit now.</p>
+        </div>
+
+        <div class="banner-section metrics-section">
+            <div class="mini-metric">
+                <span class="label">INFLATION</span>
+                <span class="value danger-text jitter" id="val-inflation">82%</span>
+            </div>
+            <div class="mini-metric">
+                <span class="label">PRIVACY</span>
+                <span class="value danger-text" id="val-privacy">0%</span>
+            </div>
+            <div class="mini-metric">
+                <span class="label">CENTRALIZED</span>
+                <span class="value danger-text blink">CRITICAL</span>
+            </div>
+        </div>
+
+        <div class="banner-section timer-section">
+            <div class="countdown-box" id="bannerTimer">
+                23:58:42
+            </div>
+            <span class="timer-label">TO MIDNIGHT</span>
+        </div>
+
+        <div class="banner-section action-section">
+            <button id="escapeButton" class="panic-btn" onclick="activateSafeMode()">
+                EXIT SYSTEM
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* --- GOOGLE FONT --- */
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    /* --- VARIABLES --- */
+    :root {
+        --doom-red: #ff3333;
+        --doom-glow: rgba(255, 51, 51, 0.5);
+        --safe-green: #00ff88;
+        --safe-glow: rgba(0, 255, 136, 0.5);
+        --banner-bg: #050505;
+        --banner-height: 100px; /* Adjustable height */
+    }
+
+    /* --- LAYOUT --- */
+    .doomsday-banner {
+        width: 100%;
+        background-color: var(--banner-bg);
+        border-bottom: 2px solid var(--doom-red);
+        border-top: 2px solid var(--doom-red);
+        color: white;
+        font-family: 'Share Tech Mono', monospace;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 20px var(--doom-glow);
+        transition: all 0.5s ease;
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    .banner-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 100%;
+        position: relative;
+        z-index: 2;
+    }
+
+    .banner-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* --- SCANLINE EFFECT --- */
+    .scanlines {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+        background-size: 100% 4px;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* --- TEXT STYLES --- */
+    .text-section { flex: 1.5; }
+    
+    .glitch-text {
+        font-size: 1.8rem;
+        color: var(--doom-red);
+        margin: 0;
+        text-shadow: 2px 0 var(--doom-glow);
+        letter-spacing: 2px;
+        animation: textFlicker 3s infinite;
+    }
+
+    .sub-text {
+        font-size: 0.9rem;
+        color: #888;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    /* --- METRICS STYLES --- */
+    .metrics-section {
+        flex: 1.5;
+        flex-direction: row;
+        gap: 20px;
+        border-left: 1px solid #333;
+        border-right: 1px solid #333;
+        padding: 0 20px;
+        justify-content: center;
+    }
+
+    .mini-metric {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .label { font-size: 0.7rem; color: #666; letter-spacing: 1px; }
+    
+    .value { font-size: 1.2rem; font-weight: bold; }
+    .danger-text { color: var(--doom-red); text-shadow: 0 0 5px var(--doom-glow); }
+
+    /* Animations */
+    .jitter { display: inline-block; animation: shake 0.2s infinite; }
+    .blink { animation: blinker 0.5s linear infinite; }
+
+    /* --- TIMER STYLES --- */
+    .timer-section {
+        flex: 1;
+        align-items: flex-end;
+        padding-right: 20px;
+    }
+
+    .countdown-box {
+        font-size: 2.2rem;
+        color: white;
+        background: #111;
+        padding: 0 10px;
+        border: 1px solid var(--doom-red);
+        text-shadow: 0 0 10px var(--doom-red);
+        line-height: 1;
+    }
+
+    .timer-label { font-size: 0.6rem; color: var(--doom-red); margin-top: 4px; }
+
+    /* --- BUTTON STYLES --- */
+    .action-section { flex: 0.5; }
+
+    .panic-btn {
+        background: var(--doom-red);
+        color: black;
+        border: none;
+        padding: 12px 20px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0 0 15px var(--doom-glow);
+        transition: transform 0.1s;
+        white-space: nowrap;
+    }
+
+    .panic-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+    .panic-btn:active { transform: scale(0.95); }
+
+    /* --- ANIMATION KEYFRAMES --- */
+    @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg); }
+        70% { transform: translate(3px, 1px) rotate(-1deg); }
+        80% { transform: translate(-1px, -1px) rotate(1deg); }
+        90% { transform: translate(1px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    @keyframes textFlicker {
+        0% { opacity: 1; }
+        5% { opacity: 0.3; }
+        10% { opacity: 1; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes blinker { 50% { opacity: 0; } }
+
+    /* --- SAFE MODE (GREEN) --- */
+    .safe-mode {
+        border-color: var(--safe-green) !important;
+        box-shadow: 0 0 30px var(--safe-glow) !important;
+    }
+    
+    .safe-mode .glitch-text { color: var(--safe-green) !important; text-shadow: 0 0 10px var(--safe-glow); animation: none; }
+    .safe-mode .danger-text { color: var(--safe-green) !important; text-shadow: 0 0 5px var(--safe-glow); animation: none; }
+    .safe-mode .countdown-box { border-color: var(--safe-green); color: var(--safe-green); text-shadow: 0 0 10px var(--safe-glow); }
+    .safe-mode .timer-label { color: var(--safe-green); }
+    .safe-mode .panic-btn { background: var(--safe-green); box-shadow: 0 0 20px var(--safe-glow); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+        .banner-container { flex-direction: column; gap: 15px; padding: 20px; }
+        .metrics-section { border: none; width: 100%; justify-content: space-between; }
+        .timer-section { align-items: center; padding: 0; }
+        .action-section { width: 100%; }
+        .panic-btn { width: 100%; }
+        .text-section { text-align: center; }
+    }
+</style>
+
+<script>
+    /**
+     * BANNER LOGIC (DOOMSDAY)
+     */
+    
+    let isSafe = false;
+    const banner = document.getElementById('doomsday-banner');
+    const title = document.getElementById('bannerTitle');
+    const sub = document.getElementById('bannerSub');
+    const valInflation = document.getElementById('val-inflation');
+    const valPrivacy = document.getElementById('val-privacy');
+    const valCentral = document.querySelector('.metrics-section .mini-metric:last-child .value'); // Metric Critical Text
+    const timerBox = document.getElementById('bannerTimer');
+    const timerLabel = document.querySelector('.timer-label');
+    const btn = document.getElementById('escapeButton');
+
+    // Countdown Logic
+    let seconds = 82; // Start near midnight
+    
+    const interval = setInterval(() => {
+        if (isSafe) return;
+
+        seconds--;
+        
+        // Loop for tension
+        if (seconds < 0) seconds = 82;
+
+        // Format MM:SS
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        timerBox.innerText = `23:58:${s < 10 ? '0'+s : s}`;
+
+        // Random fluctuation for inflation (Jitter effect)
+        if (Math.random() > 0.6) {
+            valInflation.innerText = Math.floor(Math.random() * (90 - 70) + 70) + "%";
+        }
+
+    }, 1000);
+
+    function activateSafeMode() {
+        isSafe = true;
+        clearInterval(interval);
+
+        // 1. Visual Transformation
+        banner.classList.add('safe-mode');
+
+        // 2. Text Updates
+        title.innerText = "SYSTEM SECURED";
+        sub.innerText = "Web3Cart Shield Active. Your assets are off-grid.";
+        
+        // 3. Metric Updates
+        valInflation.innerText = "0%";
+        valPrivacy.innerText = "100%";
+        valCentral.innerText = "NONE";
+        
+        // 4. Timer Updates
+        timerBox.innerText = "FOREVER";
+        timerLabel.innerText = "ASSET LIFETIME";
+
+        // 5. Button Update
+        btn.innerText = "VIEW DEMO";
+        btn.onclick = function() {
+            window.location.href = "https://web3cart.site";
+        };
+    }
+</script>

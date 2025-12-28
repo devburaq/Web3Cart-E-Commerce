@@ -1,0 +1,191 @@
+<section class="future-section">
+    <div class="future-container">
+        
+        <div class="future-text">
+            <span class="badge-ai">2030 READY</span>
+            <h2>BUILT FOR THE <span class="highlight-purple">MACHINE ECONOMY.</span></h2>
+            <p>While others build for human clicks, Web3Cart is optimized for AI Agents. MCP support, semantic vectors, and automated negotiation protocols are built-in.</p>
+        </div>
+
+        <div class="code-terminal">
+            
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="term-title">live-agent-stream.log</span>
+            </div>
+
+            <div class="terminal-window">
+                <div class="terminal-flow">
+                    <div class="code-block">
+                        <span class="time">[10:42:01]</span> <span class="info">INFO</span> Protocol handshake initiated<br>
+                        <span class="time">[10:42:02]</span> <span class="success">AUTH</span> Agent_ID: <span class="string">"GPT-5_Crawler"</span> verified<br>
+                        <span class="time">[10:42:02]</span> <span class="key">REQ</span> GET /api/v1/products/inventory<br>
+                        <span class="time">[10:42:03]</span> <span class="key">RES</span> <span class="string">{ "sku": "HOODIE_V2", "stock": 150, "price_eth": 0.045 }</span><br>
+                        <span class="time">[10:42:04]</span> <span class="warn">NEGOTIATE</span> Bot requested bulk discount (Qty: 50)<br>
+                        <span class="time">[10:42:04]</span> <span class="success">APPROVED</span> Smart contract #0x8f...2a triggered<br>
+                        <span class="time">[10:42:05]</span> <span class="info">TX</span> Payment received: 2.25 ETH (Zero-Knowledge)<br>
+                        <span class="time">[10:42:06]</span> <span class="blue">SYNC</span> Updating global ledger...<br>
+                        <span class="dash">--------------------------------------------------</span><br>
+                    </div>
+                    
+                    <div class="code-block">
+                        <span class="time">[10:42:08]</span> <span class="info">INFO</span> New Agent Connection: Claude_3_Opus<br>
+                        <span class="time">[10:42:09]</span> <span class="success">AUTH</span> MCP Protocol established<br>
+                        <span class="time">[10:42:09]</span> <span class="key">REQ</span> GET /api/v1/crypto/liquidity<br>
+                        <span class="time">[10:42:10]</span> <span class="key">RES</span> <span class="string">{ "USDT": true, "BNB": true, "KYC_REQUIRED": false }</span><br>
+                        <span class="time">[10:42:11]</span> <span class="warn">DETECT</span> High-frequency trading bot detected<br>
+                        <span class="time">[10:42:12]</span> <span class="success">ALLOW</span> Access granted (Permission Level: 5)<br>
+                        <span class="time">[10:42:13]</span> <span class="info">TX</span> Escrow generated: #99283712<br>
+                        <span class="time">[10:42:14]</span> <span class="blue">SYNC</span> Block 1928371 mined successfully<br>
+                        <span class="dash">--------------------------------------------------</span><br>
+                    </div>
+
+                     <div class="code-block">
+                        <span class="time">[10:42:01]</span> <span class="info">INFO</span> Protocol handshake initiated<br>
+                        <span class="time">[10:42:02]</span> <span class="success">AUTH</span> Agent_ID: <span class="string">"GPT-5_Crawler"</span> verified<br>
+                        <span class="time">[10:42:02]</span> <span class="key">REQ</span> GET /api/v1/products/inventory<br>
+                        <span class="time">[10:42:03]</span> <span class="key">RES</span> <span class="string">{ "sku": "HOODIE_V2", "stock": 150, "price_eth": 0.045 }</span><br>
+                        <span class="time">[10:42:04]</span> <span class="warn">NEGOTIATE</span> Bot requested bulk discount (Qty: 50)<br>
+                        <span class="time">[10:42:04]</span> <span class="success">APPROVED</span> Smart contract #0x8f...2a triggered<br>
+                        <span class="time">[10:42:05]</span> <span class="info">TX</span> Payment received: 2.25 ETH (Zero-Knowledge)<br>
+                        <span class="time">[10:42:06]</span> <span class="blue">SYNC</span> Updating global ledger...<br>
+                        <span class="dash">--------------------------------------------------</span><br>
+                    </div>
+
+                </div>
+                <div class="terminal-overlay"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* STYLE FOR FUTURE SECTION & ANIMATION */
+    :root {
+        --purple-glow: #bd00ff;
+        --code-bg: #111;
+        --term-header: #222;
+        --term-text: #ccc;
+    }
+
+    .future-section {
+        background: #050505;
+        padding: 100px 20px;
+        font-family: 'Inter', sans-serif;
+        color: #fff;
+        border-top: 1px solid #222;
+        overflow: hidden;
+    }
+
+    .future-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+    }
+
+    .future-text { flex: 1; z-index: 2; }
+    
+    .badge-ai { 
+        color: var(--purple-glow); 
+        border: 1px solid var(--purple-glow); 
+        padding: 5px 15px; 
+        border-radius: 20px; 
+        font-size: 0.8rem; 
+        font-family: 'Share Tech Mono', monospace; 
+        letter-spacing: 2px; 
+        background: rgba(189, 0, 255, 0.05);
+    }
+
+    .future-text h2 { font-size: 3rem; font-weight: 800; margin: 25px 0; line-height: 1.1; }
+    .highlight-purple { color: var(--purple-glow); text-shadow: 0 0 30px rgba(189, 0, 255, 0.4); }
+    .future-text p { color: #888; font-size: 1.1rem; line-height: 1.6; }
+
+    /* TERMINAL CONTAINER */
+    .code-terminal {
+        flex: 1;
+        background: var(--code-bg);
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        overflow: hidden;
+        font-family: 'Share Tech Mono', monospace;
+        border: 1px solid #333;
+        position: relative;
+        height: 350px; /* Fixed height for window */
+    }
+
+    .terminal-header {
+        background: var(--term-header);
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid #333;
+        z-index: 5;
+        position: relative;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    .term-title { margin-left: 10px; font-size: 0.75rem; color: #888; letter-spacing: 1px; }
+
+    /* ANIMATION WINDOW */
+    .terminal-window {
+        position: relative;
+        height: 100%;
+        overflow: hidden; /* Mask the overflow */
+        padding: 20px;
+        background: radial-gradient(circle at center, #151515 0%, #0a0a0a 100%);
+    }
+
+    .terminal-flow {
+        position: absolute;
+        width: 100%;
+        animation: scrollLogs 15s linear infinite;
+    }
+
+    /* THE LOG LINES */
+    .code-block {
+        font-size: 0.85rem;
+        line-height: 1.8;
+        color: var(--term-text);
+        margin-bottom: 0; 
+    }
+
+    /* SYNTAX HIGHLIGHTING */
+    .time { color: #555; margin-right: 8px; }
+    .info { color: #4fc1ff; font-weight: bold; }
+    .success { color: #3adc6d; font-weight: bold; }
+    .warn { color: #ffbd2e; font-weight: bold; }
+    .key { color: #dcdcaa; }
+    .string { color: #ce9178; }
+    .blue { color: #569cd6; font-weight: bold; }
+    .dash { color: #333; display: block; margin: 5px 0; }
+
+    /* OVERLAY FOR FADE EFFECT */
+    .terminal-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to bottom, var(--code-bg) 0%, transparent 15%, transparent 85%, var(--code-bg) 100%);
+        pointer-events: none;
+        z-index: 4;
+    }
+
+    /* KEYFRAME ANIMATION */
+    @keyframes scrollLogs {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); } /* Move half way up (assuming content is doubled) */
+    }
+
+    @media (max-width: 900px) {
+        .future-container { flex-direction: column; }
+        .code-terminal { width: 100%; height: 300px; }
+    }
+</style>

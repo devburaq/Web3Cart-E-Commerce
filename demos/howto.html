@@ -1,0 +1,206 @@
+<section class="steps-section">
+    <div class="steps-container">
+        
+        <div class="section-header">
+            <span class="badge">THE BLUEPRINT</span>
+            <h2>BUILD ONCE. <span class="highlight">EARN FOREVER.</span></h2>
+            <p>Stop trading time for money. Build an infrastructure that pays you while you sleep.</p>
+        </div>
+
+        <div class="steps-grid">
+            
+            <div class="step-card">
+                <div class="step-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                </div>
+                <div class="step-content">
+                    <h3>01. Plant the Seed</h3>
+                    <p>Deploy your Web3Cart infrastructure. It's not just software; it's a digital asset that you own 100%.</p>
+                </div>
+            </div>
+
+            <div class="step-arrow">→</div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <div class="step-content">
+                    <h3>02. Automate the Flow</h3>
+                    <p>Let smart contracts handle the heavy lifting. No manual approvals, no chargebacks, no headaches.</p>
+                </div>
+            </div>
+
+            <div class="step-arrow">→</div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div class="step-content">
+                    <h3>03. Scale Globally</h3>
+                    <p>Onboard merchants from anywhere. From Tokyo to Toronto, your platform has no borders.</p>
+                </div>
+            </div>
+
+            <div class="step-arrow">→</div>
+
+            <div class="step-card highlight-card">
+                <div class="step-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div class="step-content">
+                    <h3>04. Wake Up Richer</h3>
+                    <p>Passive commissions hit your wallet instantly. Even while you sleep. This is true freedom.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* --- CSS FOR STEPS SECTION --- */
+    :root {
+        --step-bg: #0a0a0a;
+        --card-bg: #111;
+        --accent: #00ff88;
+        --text-main: #fff;
+        --text-muted: #888;
+    }
+
+    .steps-section {
+        background-color: var(--step-bg);
+        padding: 100px 20px;
+        font-family: 'Inter', sans-serif;
+        color: var(--text-main);
+    }
+
+    .steps-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* HEADER */
+    .section-header {
+        text-align: center;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .section-header .badge {
+        color: var(--accent);
+        background: rgba(0, 255, 136, 0.1);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .section-header h2 {
+        font-size: 3rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+
+    .section-header .highlight {
+        color: var(--accent);
+    }
+
+    .section-header p {
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+
+    /* GRID */
+    .steps-grid {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        position: relative;
+    }
+
+    /* CARD */
+    .step-card {
+        flex: 1;
+        background: var(--card-bg);
+        padding: 30px 20px;
+        border-radius: 16px;
+        border: 1px solid #222;
+        transition: transform 0.3s, border-color 0.3s;
+        height: 100%;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .step-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: var(--text-main);
+    }
+
+    .step-icon svg { width: 28px; height: 28px; }
+
+    .step-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .step-content p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+    }
+
+    /* HIGHLIGHT LAST CARD */
+    .highlight-card {
+        border-color: var(--accent);
+        background: radial-gradient(circle at center, rgba(0,255,136,0.05), #111);
+    }
+    
+    .highlight-card .step-icon {
+        background: var(--accent);
+        color: #000;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    }
+
+    .highlight-card h3 { color: var(--accent); }
+
+    /* ARROW */
+    .step-arrow {
+        align-self: center;
+        font-size: 2rem;
+        color: #333;
+        font-weight: 300;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .steps-grid { flex-direction: column; }
+        .step-arrow { display: none; }
+        .section-header h2 { font-size: 2rem; }
+        .step-card { width: 100%; min-height: auto; }
+    }
+</style>

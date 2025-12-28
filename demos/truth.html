@@ -1,0 +1,223 @@
+<section class="intel-section">
+    <div class="intel-container">
+        
+        <div class="intel-header">
+            <div class="system-status">
+                <span class="blink-dot"></span> SYSTEM SECURE // ACCESS GRANTED
+            </div>
+            <h2 class="intel-title">DECRYPTED <span class="highlight">INTEL.</span></h2>
+            <p class="intel-desc">The system feeds you myths. We provide the source code. Click on a file to decrypt the truth.</p>
+        </div>
+
+        <div class="terminal-grid">
+
+            <div class="intel-file" onclick="decryptFile(this)">
+                <div class="file-header">
+                    <span class="file-icon">🔒</span>
+                    <span class="file-name">MYTH_01: "CRYPTO IS TOO COMPLICATED"</span>
+                    <span class="file-status">[ENCRYPTED]</span>
+                </div>
+                <div class="file-content">
+                    <p class="answer-text">FALSE. If you can copy and paste, you can use Web3Cart. We removed the complexity. No coding, no nodes, no headaches. Just install and sell.</p>
+                </div>
+            </div>
+
+            <div class="intel-file" onclick="decryptFile(this)">
+                <div class="file-header">
+                    <span class="file-icon">🔒</span>
+                    <span class="file-name">MYTH_02: "IS IT LEGAL?"</span>
+                    <span class="file-status">[ENCRYPTED]</span>
+                </div>
+                <div class="file-content">
+                    <p class="answer-text">Code is speech. Commerce is a right. Web3Cart is a self-hosted software tool. You own the code, you run the server. You are the sole authority of your business.</p>
+                </div>
+            </div>
+
+            <div class="intel-file" onclick="decryptFile(this)">
+                <div class="file-header">
+                    <span class="file-icon">🔒</span>
+                    <span class="file-name">MYTH_03: "VOLATILITY RISKS"</span>
+                    <span class="file-status">[ENCRYPTED]</span>
+                </div>
+                <div class="file-content">
+                    <p class="answer-text">IRRELEVANT. Web3Cart supports stablecoins like USDT and USDC. Accept payments in digital dollars. Zero volatility, 100% stability, instant settlement.</p>
+                </div>
+            </div>
+
+            <div class="intel-file" onclick="decryptFile(this)">
+                <div class="file-header">
+                    <span class="file-icon">🔒</span>
+                    <span class="file-name">MYTH_04: "WHAT IF I GET BANNED?"</span>
+                    <span class="file-status">[ENCRYPTED]</span>
+                </div>
+                <div class="file-content">
+                    <p class="answer-text">IMPOSSIBLE. There is no central admin to ban you. No "Suspend Account" button exists in the blockchain protocol. You are unstoppable by design.</p>
+                </div>
+            </div>
+
+             <div class="intel-file" onclick="decryptFile(this)">
+                <div class="file-header">
+                    <span class="file-icon">🔒</span>
+                    <span class="file-name">MYTH_05: "DO I NEED A COMPANY?"</span>
+                    <span class="file-status">[ENCRYPTED]</span>
+                </div>
+                <div class="file-content">
+                    <p class="answer-text">NEGATIVE. The blockchain does not ask for incorporation papers. It asks for a wallet address. Start as an individual, scale as an empire.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* CSS FOR TRUTH TERMINAL */
+    :root {
+        --term-bg: #050505;
+        --term-card: #0a0a0a;
+        --term-border: #333;
+        --neon-red: #ff3333;
+        --neon-green: #00ff88;
+        --text-white: #fff;
+        --font-mono: 'Share Tech Mono', monospace;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    .intel-section {
+        background-color: var(--term-bg);
+        padding: 100px 20px;
+        font-family: var(--font-sans);
+        color: var(--text-white);
+    }
+
+    .intel-container { max-width: 900px; margin: 0 auto; }
+
+    /* HEADER */
+    .intel-header { text-align: center; margin-bottom: 60px; }
+    
+    .system-status {
+        font-family: var(--font-mono);
+        color: var(--neon-green);
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(0, 255, 136, 0.3);
+        padding: 5px 15px;
+        border-radius: 4px;
+        background: rgba(0, 255, 136, 0.05);
+    }
+
+    .blink-dot { width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; animation: blink 1s infinite; }
+    
+    .intel-title { font-size: 3rem; font-weight: 800; margin-bottom: 15px; line-height: 1; }
+    .highlight { color: var(--neon-green); }
+    .intel-desc { color: #888; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+    /* GRID */
+    .terminal-grid { display: flex; flex-direction: column; gap: 15px; }
+
+    /* FILE CARD */
+    .intel-file {
+        background: var(--term-card);
+        border: 1px solid var(--term-border);
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .intel-file:hover {
+        border-color: var(--neon-green);
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+    }
+
+    /* FILE HEADER (Visible) */
+    .file-header {
+        padding: 20px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: 1rem;
+        background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+    }
+
+    .file-icon { margin-right: 15px; font-size: 1.2rem; }
+    .file-name { flex: 1; color: #ccc; letter-spacing: 1px; }
+    .file-status { color: var(--neon-red); font-weight: bold; font-size: 0.8rem; }
+
+    /* CONTENT (Hidden initially) */
+    .file-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+        background: rgba(0, 255, 136, 0.02);
+        border-top: 1px solid transparent;
+    }
+
+    .answer-text {
+        padding: 25px;
+        color: var(--neon-green);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.5s ease;
+    }
+
+    /* ACTIVE STATE (Decrypted) */
+    .intel-file.decrypted { border-color: var(--neon-green); }
+    .intel-file.decrypted .file-status { color: var(--neon-green); }
+    .intel-file.decrypted .file-icon { filter: drop-shadow(0 0 5px var(--neon-green)); }
+    .intel-file.decrypted .file-content { max-height: 200px; border-top-color: rgba(0, 255, 136, 0.2); }
+    .intel-file.decrypted .answer-text { opacity: 1; transform: translateY(0); }
+
+    /* ANIMATION */
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    @media (max-width: 600px) {
+        .intel-title { font-size: 2rem; }
+        .file-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+        .file-status { align-self: flex-end; }
+    }
+</style>
+
+<script>
+    function decryptFile(element) {
+        // Toggle Logic
+        const isDecrypted = element.classList.contains('decrypted');
+        const statusSpan = element.querySelector('.file-status');
+        const iconSpan = element.querySelector('.file-icon');
+
+        // Close all others (Accordion style - Optional)
+        document.querySelectorAll('.intel-file').forEach(el => {
+            el.classList.remove('decrypted');
+            el.querySelector('.file-status').innerText = "[ENCRYPTED]";
+            el.querySelector('.file-status').style.color = "var(--neon-red)";
+            el.querySelector('.file-icon').innerText = "🔒";
+        });
+
+        if (!isDecrypted) {
+            // Decrypt Animation Simulation
+            let originalText = "[ENCRYPTED]";
+            let decodingText = "01010101...";
+            
+            // Step 1: Show Binary/Scramble
+            statusSpan.innerText = "DECRYPTING...";
+            statusSpan.style.color = "#fff";
+            
+            setTimeout(() => {
+                // Step 2: Unlock
+                element.classList.add('decrypted');
+                statusSpan.innerText = "[ACCESS GRANTED]";
+                iconSpan.innerText = "🔓";
+            }, 400); // 400ms delay for effect
+        }
+    }
+</script>

@@ -1,0 +1,309 @@
+<div id="matrix-overlay" class="matrix-overlay">
+    
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="matrix-container">
+        
+        <h2 class="matrix-title">The Choice is Yours</h2>
+        <p class="matrix-subtitle">After this, there is no turning back.</p>
+
+        <div class="pill-wrapper">
+            
+            <div class="pill-option blue-option" onclick="choosePill('blue')">
+                <div class="pill blue-pill">
+                    <div class="reflection"></div>
+                </div>
+                <h3>The Blue Pill</h3>
+                <p class="pill-desc">
+                    The story ends. You wake up in your bed and believe that banks protect you.
+                    <br><span class="faded">(Pay 3% fees, Risk account freeze)</span>
+                </p>
+            </div>
+
+            <div class="pill-option red-option" onclick="choosePill('red')">
+                <div class="pill red-pill">
+                    <div class="reflection"></div>
+                </div>
+                <h3>The Red Pill</h3>
+                <p class="pill-desc">
+                    You stay in Wonderland, and I show you how deep the blockchain goes.
+                    <br><span class="highlight">(True Ownership, 0% Chargeback)</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* --- MATRIX MODAL CSS STYLES --- */
+    
+    /* 1. Overlay & Container (Glassmorphism Effect) */
+    .matrix-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        /* Transparent Black Background (85%) to show the site behind */
+        background-color: rgba(0, 0, 0, 0.85); 
+        
+        /* Blur effect for the underlying site */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        
+        z-index: 99999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Courier New', Courier, monospace;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.8s ease;
+        overflow: hidden;
+    }
+
+    .matrix-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Matrix Rain Canvas Style */
+    #matrix-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; 
+        opacity: 0.4; /* Slight opacity to blend with the glass effect */
+        pointer-events: none;
+    }
+
+    .matrix-container {
+        text-align: center;
+        color: #fff;
+        max-width: 900px;
+        padding: 40px;
+        position: relative;
+        z-index: 10;
+        animation: fadeInZoom 1s ease forwards;
+        
+        /* Inner Box Glass Effect */
+        background: rgba(0, 0, 0, 0.6); 
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+        border: 1px solid rgba(0, 255, 136, 0.15);
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+    }
+
+    @keyframes fadeInZoom {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    /* 2. Typography */
+    .matrix-title {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 255, 136, 0.5);
+    }
+
+    .matrix-subtitle {
+        font-size: 1.2rem;
+        color: #aaa;
+        margin-bottom: 50px;
+    }
+
+    /* 3. Pills Layout */
+    .pill-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        flex-wrap: wrap;
+    }
+
+    .pill-option {
+        width: 300px;
+        cursor: pointer;
+        padding: 20px;
+        border-radius: 15px;
+        transition: transform 0.3s, background 0.3s;
+        border: 1px solid transparent;
+    }
+
+    .pill-option:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 4. The 3D CSS Pills */
+    .pill {
+        width: 140px;
+        height: 50px;
+        border-radius: 50px;
+        margin: 0 auto 25px auto;
+        position: relative;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 -5px 15px rgba(0,0,0,0.3);
+        transition: box-shadow 0.3s;
+    }
+
+    .pill-option:hover .pill {
+        box-shadow: 0 0 30px currentColor;
+    }
+
+    .blue-pill {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: #00f2fe;
+    }
+
+    .red-pill {
+        background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+        color: #ff0844;
+    }
+
+    .reflection {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        width: 80%;
+        height: 40%;
+        border-radius: 50px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
+        opacity: 0.6;
+    }
+
+    /* 5. Text Below Pills */
+    .pill-option h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .pill-desc {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #ccc;
+    }
+
+    .faded { color: #666; font-size: 0.85rem; display: block; margin-top: 5px; }
+    .highlight { color: #00ff88; font-weight: bold; font-size: 0.85rem; display: block; margin-top: 5px; text-shadow: 0 0 5px rgba(0,255,136,0.5); }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .pill-wrapper { gap: 30px; }
+        .matrix-title { font-size: 2rem; }
+        .pill-option { width: 100%; margin-bottom: 20px; }
+        .matrix-overlay { overflow-y: auto; } /* Allow scroll on small screens if needed */
+    }
+</style>
+
+<script>
+    /**
+     * MATRIX RAIN EFFECT & MODAL LOGIC
+     */
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // 1. Session Check (Show only once per browser session)
+        if (!sessionStorage.getItem('matrixChoiceMade')) {
+            setTimeout(() => {
+                document.getElementById('matrix-overlay').classList.add('active');
+                initMatrixRain(); // Start animation
+            }, 500);
+        } else {
+            // If already visited, keep hidden (CSS handles default visibility)
+        }
+    });
+
+    // 2. Pill Choice Logic
+    function choosePill(color) {
+        const overlay = document.getElementById('matrix-overlay');
+        
+        if (color === 'red') {
+            // RED PILL: Redirect to Pricing / The Truth
+            // Visual Effect: Zoom In and Fade Out
+            overlay.style.transition = "opacity 0.5s, transform 0.5s";
+            overlay.style.opacity = "0";
+            overlay.style.transform = "scale(1.1)"; 
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                window.location.href = "https://web3cart.site/#pricing";
+            }, 500);
+
+            sessionStorage.setItem('matrixChoiceMade', 'red');
+
+        } else {
+            // BLUE PILL: Redirect to Homepage / Stay in Illusion
+            alert("The story ends. You wake up in your bed and believe whatever you want to believe.");
+            sessionStorage.setItem('matrixChoiceMade', 'blue');
+            window.location.href = "https://web3cart.site";
+        }
+    }
+
+    // 3. Matrix Rain Animation Logic
+    function initMatrixRain() {
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas to full screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Characters (Katakana + Latin + Numbers)
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+
+        // Initialize drops
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            // Translucent black background to create trail effect
+            // Using very low opacity to keep trails visible longer
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0'; // Matrix Green
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                // Get random character
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                
+                // Draw character
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                // Reset drop to top randomly
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                
+                // Move drop down
+                rainDrops[i]++;
+            }
+        };
+
+        // Animation Loop (30fps)
+        setInterval(draw, 33);
+    }
+</script>
