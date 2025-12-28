@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Web3Cart Logo](assets/logo.png)
+![Web3Cart Logo](assets/logo.webp)
 
 ### 🚀 **No KYC • No Banks • No Borders**
 
